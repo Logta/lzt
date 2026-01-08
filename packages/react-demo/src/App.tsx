@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import {
-  TailwindButton,
-  TailwindDropdown,
-  TailwindDropdownItem
-} from '@lzt/lit-components/react'
+import { TailwindButton } from '@lzt/lit-components/react/button'
+import { TailwindDropdown, TailwindDropdownItem } from '@lzt/lit-components/react/dropdown'
+import styles from './App.module.css'
 
 function App() {
   const [buttonClicks, setButtonClicks] = useState(0)
@@ -19,22 +17,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-gray-900">
+    <div className={styles.app}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>
           LZT UI Components in React
         </h1>
 
-        <div className="space-y-8">
+        <div className={styles.sections}>
           {/* Button Section */}
-          <section className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
               Button Component
             </h2>
-            <p className="text-gray-600 mb-4">
-              Clicks: <span className="font-bold">{buttonClicks}</span>
+            <p className={styles.sectionText}>
+              Clicks: <span className={styles.valueHighlight}>{buttonClicks}</span>
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className={styles.buttonGroup}>
               <TailwindButton onButtonClick={handleButtonClick}>
                 Default Button
               </TailwindButton>
@@ -54,13 +52,13 @@ function App() {
           </section>
 
           {/* Dropdown Section */}
-          <section className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
               Dropdown Component
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className={styles.sectionText}>
               Selected value:{' '}
-              <span className="font-bold">
+              <span className={styles.valueHighlight}>
                 {selectedValue || 'None'}
               </span>
             </p>
@@ -84,13 +82,14 @@ function App() {
           </section>
 
           {/* Info Section */}
-          <section className="bg-blue-50 rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-2 text-blue-900">
+          <section className={styles.infoSection}>
+            <h3 className={styles.infoTitle}>
               About This Demo
             </h3>
-            <p className="text-blue-800">
-              This React application uses React-wrapped components built with Lit and styled with Tailwind CSS v4.
+            <p className={styles.infoText}>
+              This React application uses React-wrapped Web Components built with Lit.
               The components provide proper TypeScript types and React-friendly event handling.
+              Web Components have their styles encapsulated internally using Shadow DOM.
             </p>
           </section>
         </div>
