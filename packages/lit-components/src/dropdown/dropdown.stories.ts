@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components'
 import { html } from 'lit'
-import './dropdown.js'
+import './dropdown'
 
 const meta: Meta = {
   title: 'Components/Dropdown',

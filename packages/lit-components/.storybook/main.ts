@@ -4,15 +4,14 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
+    '@storybook/addon-docs',
     '@chromatic-com/storybook'
   ],
   framework: {
     name: '@storybook/web-components-vite',
     options: {}
   },
-  docs: {},
-  staticDirs: ['../public']
+  docs: {}
 }
 
 export default config
