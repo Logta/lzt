@@ -35,17 +35,20 @@
       "import": "./dist/react/dropdown.js"
     },
     "./bundle": "./dist/bundle/lzt-components.iife.js",
-    "./bundle/es": "./dist/bundle/lzt-components.js"
+    "./bundle/es": "./dist/bundle/lzt-components.js",
+    "./styles.css": "./dist/styles/index.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "pnpm build:wc && pnpm build:react && pnpm build:bundle",
+    "build": "pnpm build:wc && pnpm build:react && pnpm build:bundle && pnpm build:styles",
     "build:wc": "tsc && vite build --config vite.config.wc.ts",
     "build:react": "tsc && vite build --config vite.config.react.ts",
     "build:bundle": "vite build --config vite.config.bundle.ts",
+    "build:styles": "vite build --config vite.config.styles.ts",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

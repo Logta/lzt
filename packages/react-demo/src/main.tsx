@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
 
-// Import Lit components
-import '@lzt/lit-components'
+// Import compiled Tailwind CSS styles from lit-components
+import '@lzt/lit-components/styles.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

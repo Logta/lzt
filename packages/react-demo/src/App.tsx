@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import './types'
+import {
+  TailwindButton,
+  TailwindDropdown,
+  TailwindDropdownItem
+} from '@lzt/lit-components/react'
 
 function App() {
   const [buttonClicks, setButtonClicks] = useState(0)
@@ -9,10 +13,9 @@ function App() {
     setButtonClicks(prev => prev + 1)
   }
 
-  const handleDropdownChange = (e: Event) => {
-    const customEvent = e as CustomEvent
-    setSelectedValue(customEvent.detail.value)
-    console.log('Dropdown changed:', customEvent.detail)
+  const handleDropdownChange = (e: CustomEvent) => {
+    setSelectedValue(e.detail.value)
+    console.log('Dropdown changed:', e.detail)
   }
 
   return (
@@ -32,21 +35,21 @@ function App() {
               Clicks: <span className="font-bold">{buttonClicks}</span>
             </p>
             <div className="flex flex-wrap gap-4">
-              <lzt-button onClick={handleButtonClick}>
+              <TailwindButton onButtonClick={handleButtonClick}>
                 Default Button
-              </lzt-button>
-              <lzt-button variant="primary" onClick={handleButtonClick}>
+              </TailwindButton>
+              <TailwindButton variant="primary" onButtonClick={handleButtonClick}>
                 Primary Button
-              </lzt-button>
-              <lzt-button variant="secondary" onClick={handleButtonClick}>
+              </TailwindButton>
+              <TailwindButton variant="secondary" onButtonClick={handleButtonClick}>
                 Secondary Button
-              </lzt-button>
-              <lzt-button variant="danger" onClick={handleButtonClick}>
+              </TailwindButton>
+              <TailwindButton variant="danger" onButtonClick={handleButtonClick}>
                 Danger Button
-              </lzt-button>
-              <lzt-button disabled>
+              </TailwindButton>
+              <TailwindButton disabled>
                 Disabled Button
-              </lzt-button>
+              </TailwindButton>
             </div>
           </section>
 
@@ -61,24 +64,23 @@ function App() {
                 {selectedValue || 'None'}
               </span>
             </p>
-            <lzt-dropdown
+            <TailwindDropdown
               label="Select an option"
-              // @ts-ignore - Custom event type
-              onLzt-change={handleDropdownChange}
+              onChange={handleDropdownChange}
             >
-              <lzt-dropdown-item value="option1">
+              <TailwindDropdownItem value="option1">
                 Option 1
-              </lzt-dropdown-item>
-              <lzt-dropdown-item value="option2">
+              </TailwindDropdownItem>
+              <TailwindDropdownItem value="option2">
                 Option 2
-              </lzt-dropdown-item>
-              <lzt-dropdown-item value="option3">
+              </TailwindDropdownItem>
+              <TailwindDropdownItem value="option3">
                 Option 3
-              </lzt-dropdown-item>
-              <lzt-dropdown-item value="option4">
+              </TailwindDropdownItem>
+              <TailwindDropdownItem value="option4">
                 Option 4
-              </lzt-dropdown-item>
-            </lzt-dropdown>
+              </TailwindDropdownItem>
+            </TailwindDropdown>
           </section>
 
           {/* Info Section */}
@@ -87,8 +89,8 @@ function App() {
               About This Demo
             </h3>
             <p className="text-blue-800">
-              This React application uses Web Components built with Lit and styled with Tailwind CSS v4.
-              The components are framework-agnostic and can be used in any modern web application.
+              This React application uses React-wrapped components built with Lit and styled with Tailwind CSS v4.
+              The components provide proper TypeScript types and React-friendly event handling.
             </p>
           </section>
         </div>
