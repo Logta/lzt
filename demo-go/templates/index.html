@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .section {
+            margin-bottom: 3rem;
+        }
+        .section h2 {
+            color: #444;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .demo-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .output {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin-top: 0.5rem;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+    <!-- IIFEバンドルを読み込み -->
+    <script src="/static/lzt-components.iife.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{.Title}}</h1>
+        <p class="subtitle">{{.Message}}</p>
+
+        <!-- Button Section -->
+        <div class="section">
+            <h2>Button Component</h2>
+            <div class="demo-row">
+                <lzt-button variant="default">Default</lzt-button>
+                <lzt-button variant="primary">Primary</lzt-button>
+                <lzt-button variant="secondary">Secondary</lzt-button>
+                <lzt-button variant="success">Success</lzt-button>
+                <lzt-button variant="danger">Danger</lzt-button>
+            </div>
+            <div class="demo-row">
+                <lzt-button variant="primary" size="small">Small</lzt-button>
+                <lzt-button variant="primary" size="medium">Medium</lzt-button>
+                <lzt-button variant="primary" size="large">Large</lzt-button>
+            </div>
+            <div class="demo-row">
+                <lzt-button variant="primary" disabled>Disabled</lzt-button>
+            </div>
+            <div class="output" id="button-output">ボタンをクリックしてください</div>
+
+            <div class="code-block">
+                <code>&lt;lzt-button variant="primary"&gt;Primary&lt;/lzt-button&gt;</code>
+            </div>
+        </div>
+
+        <!-- Dropdown Section -->
+        <div class="section">
+            <h2>Dropdown Component</h2>
+            <div class="demo-row">
+                <lzt-dropdown label="フルーツを選択" id="fruit-dropdown">
+                    <lzt-dropdown-item value="apple">りんご 🍎</lzt-dropdown-item>
+                    <lzt-dropdown-item value="banana">バナナ 🍌</lzt-dropdown-item>
+                    <lzt-dropdown-item value="orange">オレンジ 🍊</lzt-dropdown-item>
+                    <lzt-dropdown-item value="grape">ぶどう 🍇</lzt-dropdown-item>
+                    <lzt-dropdown-item value="strawberry">いちご 🍓</lzt-dropdown-item>
+                </lzt-dropdown>
+            </div>
+            <div class="output" id="dropdown-output">ドロップダウンから選択してください</div>
+
+            <div class="code-block">
+                <code>&lt;lzt-dropdown label="Select an option"&gt;<br>
+&nbsp;&nbsp;&lt;lzt-dropdown-item value="1"&gt;Option 1&lt;/lzt-dropdown-item&gt;<br>
+&nbsp;&nbsp;&lt;lzt-dropdown-item value="2"&gt;Option 2&lt;/lzt-dropdown-item&gt;<br>
+&lt;/lzt-dropdown&gt;</code>
+            </div>
+        </div>
+
+        <!-- Combined Example -->
+        <div class="section">
+            <h2>Combined Example</h2>
+            <p style="color: #666; margin-bottom: 1rem;">複数のコンポーネントを組み合わせた例</p>
+
+            <div style="background-color: #fafafa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e0e0e0;">
+                <h3 style="margin-top: 0;">ユーザー設定</h3>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">テーマを選択</label>
+                    <lzt-dropdown label="テーマを選択" id="theme-dropdown">
+                        <lzt-dropdown-item value="light">ライトモード ☀️</lzt-dropdown-item>
+                        <lzt-dropdown-item value="dark">ダークモード 🌙</lzt-dropdown-item>
+                        <lzt-dropdown-item value="auto">自動 ⚡</lzt-dropdown-item>
+                    </lzt-dropdown>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">言語を選択</label>
+                    <lzt-dropdown label="言語を選択" id="language-dropdown">
+                        <lzt-dropdown-item value="ja">日本語 🇯🇵</lzt-dropdown-item>
+                        <lzt-dropdown-item value="en">English 🇺🇸</lzt-dropdown-item>
+                        <lzt-dropdown-item value="zh">中文 🇨🇳</lzt-dropdown-item>
+                    </lzt-dropdown>
+                </div>
+
+                <div class="demo-row">
+                    <lzt-button variant="primary" id="save-settings">設定を保存</lzt-button>
+                    <lzt-button variant="secondary" id="reset-settings">リセット</lzt-button>
+                </div>
+            </div>
+
+            <div class="output" id="combined-output">設定を変更してください</div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="section">
+            <h2>About</h2>
+            <p>このデモはGolangのウェブサーバーで配信されており、バンドルされたWeb Componentsを使用しています。</p>
+            <ul>
+                <li><strong>Server:</strong> Go (net/http + html/template)</li>
+                <li><strong>Components:</strong> LZT UI (Lit + Zag.js + Tailwind CSS v4)</li>
+                <li><strong>Bundle:</strong> IIFE format (lzt-components.iife.js)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Button イベントリスナー
+        document.querySelectorAll('lzt-button').forEach(button => {
+            button.addEventListener('button-click', (e) => {
+                const variant = e.target.getAttribute('variant') || 'default';
+                const output = document.getElementById('button-output');
+                const timestamp = new Date().toLocaleTimeString('ja-JP');
+                output.textContent = `[${timestamp}] ${variant} ボタンがクリックされました！`;
+            });
+        });
+
+        // Dropdown イベントリスナー
+        const fruitDropdown = document.getElementById('fruit-dropdown');
+        if (fruitDropdown) {
+            fruitDropdown.addEventListener('change', (e) => {
+                const output = document.getElementById('dropdown-output');
+                const timestamp = new Date().toLocaleTimeString('ja-JP');
+                output.textContent = `[${timestamp}] 選択: ${e.detail.label} (value: ${e.detail.value})`;
+            });
+        }
+
+        // Combined Example イベントリスナー
+        const themeDropdown = document.getElementById('theme-dropdown');
+        const languageDropdown = document.getElementById('language-dropdown');
+        const saveButton = document.getElementById('save-settings');
+        const resetButton = document.getElementById('reset-settings');
+        const combinedOutput = document.getElementById('combined-output');
+
+        let settings = {
+            theme: '',
+            language: ''
+        };
+
+        if (themeDropdown) {
+            themeDropdown.addEventListener('change', (e) => {
+                settings.theme = e.detail.value;
+                updateCombinedOutput('テーマが変更されました');
+            });
+        }
+
+        if (languageDropdown) {
+            languageDropdown.addEventListener('change', (e) => {
+                settings.language = e.detail.value;
+                updateCombinedOutput('言語が変更されました');
+            });
+        }
+
+        if (saveButton) {
+            saveButton.addEventListener('button-click', () => {
+                if (settings.theme || settings.language) {
+                    updateCombinedOutput('設定を保存しました！');
+                    console.log('Saved settings:', settings);
+                } else {
+                    updateCombinedOutput('保存する設定がありません');
+                }
+            });
+        }
+
+        if (resetButton) {
+            resetButton.addEventListener('button-click', () => {
+                settings = { theme: '', language: '' };
+                if (themeDropdown) themeDropdown.value = '';
+                if (languageDropdown) languageDropdown.value = '';
+                updateCombinedOutput('設定をリセットしました');
+            });
+        }
+
+        function updateCombinedOutput(message) {
+            const timestamp = new Date().toLocaleTimeString('ja-JP');
+            const themeText = settings.theme ? `テーマ: ${settings.theme}` : '';
+            const langText = settings.language ? `言語: ${settings.language}` : '';
+            const settingsText = [themeText, langText].filter(Boolean).join(', ');
+
+            combinedOutput.textContent = `[${timestamp}] ${message}${settingsText ? ` (${settingsText})` : ''}`;
+        }
+    </script>
+</body>
+</html>
