@@ -1,5 +1,3 @@
-import type { MachineSrc, StateMachine as S } from '@zag-js/core'
-
 export interface UseMachineOptions<TContext extends Record<string, any>> {
   context?: TContext
 }
@@ -25,18 +23,15 @@ export interface SimpleService<TContext extends Record<string, any>> {
   send(event: any): void
 }
 
-export function useMachine<
-  TContext extends Record<string, any>,
-  TState extends S.StateSchema = any,
->(
-  machine: MachineSrc<TContext, TState>,
+export function useMachine<TContext extends Record<string, any>>(
+  _machine: any,
   options?: UseMachineOptions<TContext>,
 ): SimpleService<TContext> {
   const context = new TypeSafeContext<TContext>(options?.context)
 
   return {
     context,
-    send: (event: any) => {
+    send: (_event: any) => {
       // Simplified send implementation for now
       // In a full implementation, this would integrate with Zag.js state machine
     },

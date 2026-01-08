@@ -2,29 +2,50 @@
   "name": "@lzt/lit-components",
   "version": "0.0.1",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/wc/index.js",
+  "module": "./dist/wc/index.js",
+  "types": "./dist/wc/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/wc/index.d.ts",
+      "import": "./dist/wc/index.js"
     },
-    "./button": {
-      "types": "./dist/button.d.ts",
-      "import": "./dist/button.js"
+    "./wc": {
+      "types": "./dist/wc/index.d.ts",
+      "import": "./dist/wc/index.js"
     },
-    "./dropdown": {
-      "types": "./dist/dropdown.d.ts",
-      "import": "./dist/dropdown.js"
-    }
+    "./wc/button": {
+      "types": "./dist/wc/button.d.ts",
+      "import": "./dist/wc/button.js"
+    },
+    "./wc/dropdown": {
+      "types": "./dist/wc/dropdown.d.ts",
+      "import": "./dist/wc/dropdown.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./react/button": {
+      "types": "./dist/react/button.d.ts",
+      "import": "./dist/react/button.js"
+    },
+    "./react/dropdown": {
+      "types": "./dist/react/dropdown.d.ts",
+      "import": "./dist/react/dropdown.js"
+    },
+    "./bundle": "./dist/bundle/lzt-components.iife.js",
+    "./bundle/es": "./dist/bundle/lzt-components.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "pnpm build:wc && pnpm build:react && pnpm build:bundle",
+    "build:wc": "tsc && vite build --config vite.config.wc.ts",
+    "build:react": "tsc && vite build --config vite.config.react.ts",
+    "build:bundle": "vite build --config vite.config.bundle.ts",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -49,6 +70,8 @@
     "vite-plugin-dts": "^3.7.0",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@lit/react": "^1.0.8"
   },
   "customElements": "custom-elements.json"

@@ -1,11 +1,11 @@
 import { html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { TailwindElement } from './base-element.js'
+import { TailwindElement } from '../utils/base-element.js'
 
 @customElement('lzt-button')
 export class LztButton extends TailwindElement {
   static styles = [
-    TailwindElement.styles,
+    ...TailwindElement.styles,
     css`
       :host {
         display: inline-block;

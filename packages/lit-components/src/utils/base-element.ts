@@ -1,5 +1,5 @@
 import { LitElement } from 'lit'
-import { tailwindStyles } from './styles/tailwind.js'
+import { tailwindStyles } from '../styles/tailwind.js'
 
 /**
  * Base element that includes Tailwind styles

@@ -67,17 +67,153 @@ http://localhost:5173 でReactアプリケーションが表示されます。
 
 ## ビルド
 
-```bash
-# Litコンポーネントをビルド
-pnpm build
+このプロジェクトは3つの異なるビルドターゲットをサポートしています：
 
-# Storybookをビルド（静的サイト生成）
+### 1. Vanilla JS / Web Components向けビルド
+
+標準的なWeb Componentsとして使用できる形式です。
+
+```bash
+pnpm build:wc
+```
+
+出力: `packages/lit-components/dist/wc/`
+
+### 2. React向けビルド
+
+`@lit/react`でラップされたReactコンポーネントとして使用できる形式です。
+
+```bash
+pnpm build:react
+```
+
+出力: `packages/lit-components/dist/react/`
+
+### 3. Golang (SSR)向けバンドルビルド
+
+全ての依存関係を含む単一ファイルとして出力され、SSR環境で使用できます。
+
+```bash
+pnpm build:bundle
+```
+
+出力: `packages/lit-components/dist/bundle/`
+- `lzt-components.iife.js` - ブラウザでグローバル変数として使用可能
+- `lzt-components.js` - ESモジュール形式
+
+### すべてビルド
+
+```bash
+pnpm build
+```
+
+上記3つすべてをビルドします。
+
+### Storybookのビルド
+
+```bash
 pnpm build-storybook
 ```
 
-ビルドされたファイルは以下に出力されます：
-- コンポーネント: `packages/lit-components/dist`
-- Storybook: `packages/lit-components/storybook-static`
+出力: `packages/lit-components/storybook-static`
+
+## 使用方法
+
+### 1. Vanilla JavaScript / HTML (Web Components)
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module">
+      import '@lzt/lit-components/wc';
+    </script>
+  </head>
+  <body>
+    <lzt-button variant="primary">Click me</lzt-button>
+
+    <lzt-dropdown label="Select an option">
+      <lzt-dropdown-item value="1">Option 1</lzt-dropdown-item>
+      <lzt-dropdown-item value="2">Option 2</lzt-dropdown-item>
+    </lzt-dropdown>
+  </body>
+</html>
+```
+
+### 2. React (Reactラッパーを使用)
+
+```tsx
+import { TailwindButton, TailwindDropdown, TailwindDropdownItem } from '@lzt/lit-components/react';
+
+function App() {
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+
+  const handleChange = (e: CustomEvent) => {
+    console.log('Selected:', e.detail.value);
+  };
+
+  return (
+    <div>
+      <TailwindButton
+        variant="primary"
+        size="medium"
+        onButtonClick={handleClick}
+      >
+        Click me
+      </TailwindButton>
+
+      <TailwindDropdown
+        label="Select an option"
+        onChange={handleChange}
+      >
+        <TailwindDropdownItem value="1">Option 1</TailwindDropdownItem>
+        <TailwindDropdownItem value="2">Option 2</TailwindDropdownItem>
+      </TailwindDropdown>
+    </div>
+  );
+}
+```
+
+### 3. React (Web Componentsを直接使用)
+
+```tsx
+import '@lzt/lit-components/wc';
+
+function App() {
+  return (
+    <div>
+      <lzt-button variant="primary">Click me</lzt-button>
+
+      <lzt-dropdown label="Select an option">
+        <lzt-dropdown-item value="1">Option 1</lzt-dropdown-item>
+        <lzt-dropdown-item value="2">Option 2</lzt-dropdown-item>
+      </lzt-dropdown>
+    </div>
+  );
+}
+```
+
+### 4. Golang (SSR) / html/template
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- IIFEバンドルを使用 -->
+    <script src="/static/lzt-components.iife.js"></script>
+  </head>
+  <body>
+    <lzt-button variant="primary">Click me</lzt-button>
+
+    <lzt-dropdown label="Select an option">
+      <lzt-dropdown-item value="1">Option 1</lzt-dropdown-item>
+      <lzt-dropdown-item value="2">Option 2</lzt-dropdown-item>
+    </lzt-dropdown>
+  </body>
+</html>
+```
 
 ## コンポーネント
 

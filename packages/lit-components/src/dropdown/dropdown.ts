@@ -1,8 +1,8 @@
 import { html, css } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import * as menu from '@zag-js/menu'
-import { TailwindElement } from './base-element.js'
-import { useMachine } from './utils/use-machine.js'
+import { TailwindElement } from '../utils/base-element.js'
+import { useMachine } from '../utils/use-machine.js'
 
 interface MenuOption {
   label: string
@@ -18,7 +18,7 @@ interface MenuApi {
 @customElement('lzt-dropdown')
 export class LztDropdown extends TailwindElement {
   static styles = [
-    TailwindElement.styles,
+    ...TailwindElement.styles,
     css`
       :host {
         display: inline-block;
@@ -179,7 +179,7 @@ export class LztDropdown extends TailwindElement {
 @customElement('lzt-dropdown-item')
 export class LztDropdownItem extends TailwindElement {
   static styles = [
-    TailwindElement.styles,
+    ...TailwindElement.styles,
     css`
       :host {
         display: block;
