@@ -1,0 +1,116 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# LZT UI Components
+
+Lit + Zag.js + Tailwind CSS v4で構築されたUIコンポーネントライブラリ
+
+## 概要
+
+このライブラリは、モダンなWeb技術スタックを使用して構築された、再利用可能なUIコンポーネントのコレクションです。
+
+### 主な技術スタック
+
+- **Lit** - 高速で軽量なWeb Componentsフレームワーク
+- **Zag.js** - ステートマシンベースのUI状態管理ライブラリ
+- **Tailwind CSS v4** - ユーティリティファーストのCSSフレームワーク
+- **TypeScript** - 型安全な開発体験
+
+## 主な特徴
+
+### 🎯 ステートマシン駆動
+
+Zag.jsによる堅牢な状態管理で、複雑なUIロジックを簡潔に実装
+
+### ♿️ アクセシビリティ
+
+WAI-ARIA準拠の実装により、すべてのユーザーが利用可能
+
+### 🔌 フレームワーク非依存
+
+Web Components標準に基づき、React、Vue、Svelteなどあらゆるフレームワークで利用可能
+
+### 🎨 モダンなスタイリング
+
+Tailwind CSS v4の最新機能を活用したスタイリング
+
+### 📦 型安全
+
+TypeScriptによる完全な型サポートで、開発時のエラーを削減
+
+## コンポーネント一覧
+
+現在、以下のコンポーネントが利用可能です：
+
+- **Button** - 様々なバリアントとサイズのボタンコンポーネント
+- **Dropdown** - Zag.jsのメニューステートマシンを使用したドロップダウンメニュー
+
+## インストール
+
+```bash
+npm install @lzt/lit-components
+# または
+pnpm add @lzt/lit-components
+# または
+yarn add @lzt/lit-components
+```
+
+## 使用方法
+
+### Vanilla JavaScript / HTML
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module">
+      import '@lzt/lit-components';
+    </script>
+  </head>
+  <body>
+    <lzt-button variant="primary">Click me</lzt-button>
+
+    <lzt-dropdown label="Select an option">
+      <lzt-dropdown-item value="1">Option 1</lzt-dropdown-item>
+      <lzt-dropdown-item value="2">Option 2</lzt-dropdown-item>
+    </lzt-dropdown>
+  </body>
+</html>
+```
+
+### React
+
+```tsx
+import '@lzt/lit-components';
+
+function App() {
+  return (
+    <div>
+      <lzt-button variant="primary">Click me</lzt-button>
+
+      <lzt-dropdown label="Select an option">
+        <lzt-dropdown-item value="1">Option 1</lzt-dropdown-item>
+        <lzt-dropdown-item value="2">Option 2</lzt-dropdown-item>
+      </lzt-dropdown>
+    </div>
+  );
+}
+```
+
+## 開発
+
+```bash
+# 開発サーバーの起動
+pnpm dev
+
+# Storybookの起動
+pnpm storybook
+
+# ビルド
+pnpm build
+```
+
+## ライセンス
+
+MIT

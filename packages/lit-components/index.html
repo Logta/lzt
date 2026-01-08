@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LZT UI Components - Dev</title>
+  </head>
+  <body>
+    <div class="p-8 space-y-8">
+      <h1 class="text-3xl font-bold mb-8">LZT UI Components</h1>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-4">Button Component</h2>
+        <div class="space-y-4">
+          <div class="space-x-4">
+            <lzt-button>Default Button</lzt-button>
+            <lzt-button variant="primary">Primary Button</lzt-button>
+            <lzt-button variant="secondary">Secondary Button</lzt-button>
+            <lzt-button variant="success">Success Button</lzt-button>
+            <lzt-button variant="danger">Danger Button</lzt-button>
+            <lzt-button disabled>Disabled Button</lzt-button>
+          </div>
+          <div class="space-x-4">
+            <lzt-button size="small" variant="primary">Small</lzt-button>
+            <lzt-button size="medium" variant="primary">Medium</lzt-button>
+            <lzt-button size="large" variant="primary">Large</lzt-button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-4">Dropdown Component</h2>
+        <lzt-dropdown label="Select an option">
+          <lzt-dropdown-item value="option1">Option 1</lzt-dropdown-item>
+          <lzt-dropdown-item value="option2">Option 2</lzt-dropdown-item>
+          <lzt-dropdown-item value="option3">Option 3</lzt-dropdown-item>
+        </lzt-dropdown>
+      </section>
+    </div>
+
+    <script type="module" src="/src/dev.ts"></script>
+  </body>
+</html>

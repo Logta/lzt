@@ -1,0 +1,55 @@
+{
+  "name": "@lzt/lit-components",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js"
+    },
+    "./dropdown": {
+      "types": "./dist/dropdown.d.ts",
+      "import": "./dist/dropdown.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "lit": "^3.3.2",
+    "@zag-js/menu": "^1.32.0",
+    "@zag-js/core": "^1.32.0"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.2",
+    "@storybook/addon-essentials": "^8.5.0",
+    "@storybook/addon-links": "^8.5.0",
+    "@storybook/blocks": "^8.5.0",
+    "@storybook/web-components": "^8.5.0",
+    "@storybook/web-components-vite": "^8.5.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "storybook": "^8.5.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "^3.7.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "@lit/react": "^1.0.8"
+  },
+  "customElements": "custom-elements.json"
+}
