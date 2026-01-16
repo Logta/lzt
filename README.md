@@ -13,14 +13,81 @@ Zag.jsのステートマシンを活用し、WAI-ARIA準拠のアクセシブル
 
 ## セットアップ
 
+### 前提条件
+
+以下のいずれかの環境が必要です：
+
+**オプション1: mise を使用（推奨）**
+- [mise](https://mise.jdx.dev/) がインストールされていること
+- mise.tomlで以下が自動的にインストールされます：
+  - Node.js 24.3.0
+  - pnpm 10.12.3
+  - Go (latest)
+
+**オプション2: ローカル環境**
+- Node.js 24.3.0
+- pnpm 10.12.3
+- Go (latest) - demo-goを実行する場合のみ
+
+**オプション3: Docker**
+- Docker と Docker Compose
+
+### mise を使用したセットアップ（推奨）
+
+```bash
+# miseで依存関係を自動インストール
+mise install
+
+# プロジェクトの依存関係をインストール
+mise run install
+
+# 開発サーバーを起動
+mise run dev
+
+# Storybookを起動
+mise run storybook
+
+# React demoを起動
+mise run dev:react
+
+# Go demoのセットアップ（ビルド＆バンドルコピー）
+mise run setup:go
+
+# Go demoサーバーを起動
+mise run dev:go
+```
+
+### ローカル環境（miseなし）
+
 ```bash
 # 依存関係のインストール
 pnpm install
 ```
 
+### Docker環境
+
+Docker Composeは以下の3つのサービスを提供します：
+
+1. **builder**: Litコンポーネントをビルド
+2. **react-demo**: React demoアプリケーション
+3. **demo-go**: Go demoアプリケーション
+
+```bash
+# React demoを起動
+docker-compose up react-demo
+
+# Litをビルドして、Go demoを起動
+docker-compose up builder demo-go
+
+# 個別にビルドのみ実行
+docker-compose run --rm builder
+```
+
 ## 開発
 
-### Litコンポーネントの開発
+### ローカル環境での開発
+
+#### Litコンポーネントの開発
 
 ```bash
 # Litコンポーネントの開発サーバーを起動
@@ -33,7 +100,7 @@ pnpm dev
 
 http://localhost:5173 でLitコンポーネントのデモページが表示されます。
 
-### Storybookでコンポーネントを確認
+#### Storybookでコンポーネントを確認
 
 ```bash
 # Storybookを起動
@@ -52,7 +119,7 @@ Storybookでは以下が確認できます：
 - コンポーネントのドキュメント
 - 使用例とサンプルコード
 
-### React環境でのテスト
+#### React環境でのテスト
 
 ```bash
 # React demoアプリケーションを起動
@@ -65,11 +132,66 @@ pnpm dev
 
 http://localhost:5173 でReactアプリケーションが表示されます。
 
+### Docker環境での開発
+
+Docker環境では以下の3つのサービスを利用できます：
+
+#### React demoの起動
+
+```bash
+# React demoアプリケーションを起動
+docker-compose up react-demo
+
+# バックグラウンドで実行
+docker-compose up -d react-demo
+```
+
+http://localhost:5173 でReactアプリケーションにアクセスできます。
+
+#### Litコンポーネントのビルド
+
+```bash
+# コンポーネントをビルド
+docker-compose run --rm builder
+```
+
+ビルド成果物は `packages/lit-components/dist` に出力されます。
+
+#### Go demoの起動
+
+```bash
+# Litをビルドして、Go demoを起動
+docker-compose up builder demo-go
+
+# バックグラウンドで実行
+docker-compose up -d builder demo-go
+```
+
+http://localhost:8080 でGoアプリケーションにアクセスできます。
+
+#### サービスの管理
+
+```bash
+# 実行中のサービスを確認
+docker-compose ps
+
+# ログを確認
+docker-compose logs -f
+
+# サービスを停止
+docker-compose down
+
+# ボリュームも含めて削除
+docker-compose down -v
+```
+
 ## ビルド
 
 このプロジェクトは3つの異なるビルドターゲットをサポートしています：
 
-### 1. Vanilla JS / Web Components向けビルド
+### ローカル環境でのビルド
+
+#### 1. Vanilla JS / Web Components向けビルド
 
 標準的なWeb Componentsとして使用できる形式です。
 
@@ -79,7 +201,7 @@ pnpm build:wc
 
 出力: `packages/lit-components/dist/wc/`
 
-### 2. React向けビルド
+#### 2. React向けビルド
 
 `@lit/react`でラップされたReactコンポーネントとして使用できる形式です。
 
@@ -89,7 +211,7 @@ pnpm build:react
 
 出力: `packages/lit-components/dist/react/`
 
-### 3. Golang (SSR)向けバンドルビルド
+#### 3. Golang (SSR)向けバンドルビルド
 
 全ての依存関係を含む単一ファイルとして出力され、SSR環境で使用できます。
 
@@ -101,7 +223,7 @@ pnpm build:bundle
 - `lzt-components.iife.js` - ブラウザでグローバル変数として使用可能
 - `lzt-components.js` - ESモジュール形式
 
-### すべてビルド
+#### すべてビルド
 
 ```bash
 pnpm build
@@ -109,13 +231,25 @@ pnpm build
 
 上記3つすべてをビルドします。
 
-### Storybookのビルド
+#### Storybookのビルド
 
 ```bash
 pnpm build-storybook
 ```
 
 出力: `packages/lit-components/storybook-static`
+
+### Docker環境でのビルド
+
+```bash
+# コンポーネントをビルド
+docker-compose run --rm builder
+
+# Goデモアプリケーションをビルド＆実行
+docker-compose up builder demo-go
+```
+
+Goデモアプリケーションは http://localhost:8080 でアクセスできます。
 
 ## 使用方法
 
@@ -326,6 +460,8 @@ function App() {
 - **CSS Custom Properties**: テーマとスタイリング
 - **Vite**: ビルドツール
 - **pnpm**: パッケージマネージャー
+- **mise**: 開発環境管理ツール
+- **Docker**: コンテナ化された開発環境
 
 ## 主な特徴
 

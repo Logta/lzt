@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # Litコンポーネントのビルド
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lzt-builder
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/lit-components/node_modules
+      - /app/packages/react-demo/node_modules
+    command: sh -c "pnpm build && mkdir -p demo-go/static && cp packages/lit-components/dist/bundle/lzt-components.iife.js demo-go/static/"
+    environment:
+      - NODE_ENV=production
+
+  # Reactデモアプリケーション
+  react-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lzt-react-demo
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/lit-components/node_modules
+      - /app/packages/react-demo/node_modules
+    command: pnpm dev:react
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+
+  # Goデモアプリケーション
+  demo-go:
+    build:
+      context: .
+      dockerfile: Dockerfile.go
+    container_name: lzt-demo-go
+    ports:
+      - "8080:8080"
+    depends_on:
+      builder:
+        condition: service_completed_successfully
