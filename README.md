@@ -277,7 +277,7 @@ Goデモアプリケーションは http://localhost:8080 でアクセスでき�
 ### 2. React (Reactラッパーを使用)
 
 ```tsx
-import { LztButton, LztDropdown, LztDropdownItem } from '@lzt/lit-components/react';
+import { LztButtonReact, LztDropdownReact, LztDropdownItemReact } from '@lzt/lit-components/react';
 
 function App() {
   const handleClick = () => {
@@ -290,21 +290,21 @@ function App() {
 
   return (
     <div>
-      <LztButton
+      <LztButtonReact
         variant="primary"
         size="medium"
         onButtonClick={handleClick}
       >
         Click me
-      </LztButton>
+      </LztButtonReact>
 
-      <LztDropdown
+      <LztDropdownReact
         label="Select an option"
         onChange={handleChange}
       >
-        <LztDropdownItem value="1">Option 1</LztDropdownItem>
-        <LztDropdownItem value="2">Option 2</LztDropdownItem>
-      </LztDropdown>
+        <LztDropdownItemReact value="1">Option 1</LztDropdownItemReact>
+        <LztDropdownItemReact value="2">Option 2</LztDropdownItemReact>
+      </LztDropdownReact>
     </div>
   );
 }

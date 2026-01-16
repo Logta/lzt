@@ -8,9 +8,5 @@
     "build": "pnpm --filter lit-components build",
     "storybook": "pnpm --filter lit-components storybook",
     "build-storybook": "pnpm --filter lit-components build-storybook"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.0",
-    "tailwindcss": "^4.0.0"
   }
 }

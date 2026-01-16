@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { TailwindButton } from '@lzt/lit-components/react/button'
-import { TailwindDropdown, TailwindDropdownItem } from '@lzt/lit-components/react/dropdown'
+import { LztButtonReact } from '@lzt/lit-components/react/button'
+import { LztDropdownReact, LztDropdownItemReact } from '@lzt/lit-components/react/dropdown'
 import styles from './App.module.css'
 
 function App() {
@@ -33,21 +33,21 @@ function App() {
               Clicks: <span className={styles.valueHighlight}>{buttonClicks}</span>
             </p>
             <div className={styles.buttonGroup}>
-              <TailwindButton onButtonClick={handleButtonClick}>
+              <LztButtonReact onButtonClick={handleButtonClick}>
                 Default Button
-              </TailwindButton>
-              <TailwindButton variant="primary" onButtonClick={handleButtonClick}>
+              </LztButtonReact>
+              <LztButtonReact variant="primary" onButtonClick={handleButtonClick}>
                 Primary Button
-              </TailwindButton>
-              <TailwindButton variant="secondary" onButtonClick={handleButtonClick}>
+              </LztButtonReact>
+              <LztButtonReact variant="secondary" onButtonClick={handleButtonClick}>
                 Secondary Button
-              </TailwindButton>
-              <TailwindButton variant="danger" onButtonClick={handleButtonClick}>
+              </LztButtonReact>
+              <LztButtonReact variant="danger" onButtonClick={handleButtonClick}>
                 Danger Button
-              </TailwindButton>
-              <TailwindButton disabled>
+              </LztButtonReact>
+              <LztButtonReact disabled>
                 Disabled Button
-              </TailwindButton>
+              </LztButtonReact>
             </div>
           </section>
 
@@ -62,23 +62,23 @@ function App() {
                 {selectedValue || 'None'}
               </span>
             </p>
-            <TailwindDropdown
+            <LztDropdownReact
               label="Select an option"
               onChange={handleDropdownChange}
             >
-              <TailwindDropdownItem value="option1">
+              <LztDropdownItemReact value="option1">
                 Option 1
-              </TailwindDropdownItem>
-              <TailwindDropdownItem value="option2">
+              </LztDropdownItemReact>
+              <LztDropdownItemReact value="option2">
                 Option 2
-              </TailwindDropdownItem>
-              <TailwindDropdownItem value="option3">
+              </LztDropdownItemReact>
+              <LztDropdownItemReact value="option3">
                 Option 3
-              </TailwindDropdownItem>
-              <TailwindDropdownItem value="option4">
+              </LztDropdownItemReact>
+              <LztDropdownItemReact value="option4">
                 Option 4
-              </TailwindDropdownItem>
-            </TailwindDropdown>
+              </LztDropdownItemReact>
+            </LztDropdownReact>
           </section>
 
           {/* Info Section */}

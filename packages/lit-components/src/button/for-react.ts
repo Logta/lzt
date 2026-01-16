@@ -2,7 +2,7 @@ import React from 'react'
 import { createComponent } from '@lit/react'
 import { LztButton } from './button.js'
 
-export interface TailwindButtonProps {
+export interface LztButtonProps {
   label?: string
   variant?: 'default' | 'primary' | 'secondary' | 'success' | 'danger'
   size?: 'small' | 'medium' | 'large'
@@ -12,7 +12,7 @@ export interface TailwindButtonProps {
   children?: React.ReactNode
 }
 
-const TailwindButtonBase = createComponent({
+const LztButtonReactBase = createComponent({
   tagName: 'lzt-button',
   elementClass: LztButton,
   react: React,
@@ -22,6 +22,6 @@ const TailwindButtonBase = createComponent({
 })
 
 // Type assertion to override @lit/react's Event type with CustomEvent
-export const TailwindButton = TailwindButtonBase as React.ForwardRefExoticComponent<
-  TailwindButtonProps & React.RefAttributes<LztButton>
+export const LztButtonReact = LztButtonReactBase as React.ForwardRefExoticComponent<
+  LztButtonProps & React.RefAttributes<LztButton>
 >

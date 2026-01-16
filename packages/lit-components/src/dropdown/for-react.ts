@@ -2,7 +2,7 @@ import React from 'react'
 import { createComponent } from '@lit/react'
 import { LztDropdown, LztDropdownItem } from './dropdown.js'
 
-export interface TailwindDropdownProps {
+export interface LztDropdownProps {
   label?: string
   value?: string
   options?: Array<{ label: string; value: string }>
@@ -10,13 +10,13 @@ export interface TailwindDropdownProps {
   children?: React.ReactNode
 }
 
-export interface TailwindDropdownItemProps {
+export interface LztDropdownItemProps {
   value: string
   selected?: boolean
   children?: React.ReactNode
 }
 
-const TailwindDropdownBase = createComponent({
+const LztDropdownReactBase = createComponent({
   tagName: 'lzt-dropdown',
   elementClass: LztDropdown,
   react: React,
@@ -26,11 +26,11 @@ const TailwindDropdownBase = createComponent({
 })
 
 // Type assertion to override @lit/react's Event type with CustomEvent
-export const TailwindDropdown = TailwindDropdownBase as React.ForwardRefExoticComponent<
-  TailwindDropdownProps & React.RefAttributes<LztDropdown>
+export const LztDropdownReact = LztDropdownReactBase as React.ForwardRefExoticComponent<
+  LztDropdownProps & React.RefAttributes<LztDropdown>
 >
 
-export const TailwindDropdownItem = createComponent({
+export const LztDropdownItemReact = createComponent({
   tagName: 'lzt-dropdown-item',
   elementClass: LztDropdownItem,
   react: React
