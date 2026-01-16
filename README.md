@@ -1,6 +1,6 @@
 # LZT UI
 
-Lit + Zag.js + Tailwind CSS v4で構築されたUIコンポーネントライブラリ
+Lit + Zag.jsで構築されたUIコンポーネントライブラリ
 
 Zag.jsのステートマシンを活用し、WAI-ARIA準拠のアクセシブルなWeb Componentsを提供します。
 
@@ -143,7 +143,7 @@ pnpm build-storybook
 ### 2. React (Reactラッパーを使用)
 
 ```tsx
-import { TailwindButton, TailwindDropdown, TailwindDropdownItem } from '@lzt/lit-components/react';
+import { LztButton, LztDropdown, LztDropdownItem } from '@lzt/lit-components/react';
 
 function App() {
   const handleClick = () => {
@@ -156,21 +156,21 @@ function App() {
 
   return (
     <div>
-      <TailwindButton
+      <LztButton
         variant="primary"
         size="medium"
         onButtonClick={handleClick}
       >
         Click me
-      </TailwindButton>
+      </LztButton>
 
-      <TailwindDropdown
+      <LztDropdown
         label="Select an option"
         onChange={handleChange}
       >
-        <TailwindDropdownItem value="1">Option 1</TailwindDropdownItem>
-        <TailwindDropdownItem value="2">Option 2</TailwindDropdownItem>
-      </TailwindDropdown>
+        <LztDropdownItem value="1">Option 1</LztDropdownItem>
+        <LztDropdownItem value="2">Option 2</LztDropdownItem>
+      </LztDropdown>
     </div>
   );
 }
@@ -271,16 +271,16 @@ Zag.jsのメニューステートマシンを使用した、WAI-ARIA準拠のド
 
 ## アーキテクチャ
 
-### TailwindElement
+### BaseElement
 
-すべてのコンポーネントは`TailwindElement`ベースクラスを継承しています。このクラスはTailwind CSSスタイルを自動的にShadow DOMに注入します。
+すべてのコンポーネントは`BaseElement`ベースクラスを継承しています。このクラスは共通のベーススタイルをShadow DOMに注入し、CSS Custom Propertiesを使用したテーマシステムを提供します。
 
 ```typescript
-import { TailwindElement } from './base-element.js'
+import { BaseElement } from './base-element.js'
 
 @customElement('my-component')
-export class MyComponent extends TailwindElement {
-  // Tailwind CSSクラスが利用可能
+export class MyComponent extends BaseElement {
+  // ベーススタイルとCSS変数が利用可能
 }
 ```
 
@@ -323,7 +323,7 @@ function App() {
 - **Lit**: Web Componentsフレームワーク
 - **Zag.js**: ステートマシンベースのUI状態管理
 - **TypeScript**: 型安全性
-- **Tailwind CSS v4**: スタイリング
+- **CSS Custom Properties**: テーマとスタイリング
 - **Vite**: ビルドツール
 - **pnpm**: パッケージマネージャー
 
@@ -333,7 +333,7 @@ function App() {
 - **アクセシビリティ**: WAI-ARIA準拠の実装
 - **フレームワーク非依存**: Web Components標準に基づく
 - **型安全**: TypeScriptによる完全な型サポート
-- **モダンなスタイリング**: Tailwind CSS v4の最新機能
+- **柔軟なスタイリング**: CSS Custom Propertiesによるカスタマイズ可能なテーマシステム
 
 ## ライセンス
 

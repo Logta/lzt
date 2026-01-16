@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import tailwindcss from '@tailwindcss/postcss'
 
 /**
  * Golang (SSR)向けバンドルビルド設定
@@ -28,10 +27,5 @@ export default defineConfig({
     },
     // SSR環境で使用するため、minifyは有効化
     minify: 'esbuild'
-  },
-  css: {
-    postcss: {
-      plugins: [tailwindcss()]
-    }
   }
 })

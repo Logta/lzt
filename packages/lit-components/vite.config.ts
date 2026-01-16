@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
-import tailwindcss from '@tailwindcss/postcss'
 
 export default defineConfig({
   plugins: [
@@ -24,13 +23,6 @@ export default defineConfig({
       output: {
         preserveModules: false
       }
-    }
-  },
-  css: {
-    postcss: {
-      plugins: [
-        tailwindcss()
-      ]
     }
   }
 })

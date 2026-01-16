@@ -1,8 +1,9 @@
-import { html, css } from 'lit'
+import { html, css, unsafeCSS } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import * as menu from '@zag-js/menu'
-import { TailwindElement } from '../utils/base-element.js'
+import { BaseElement } from '../utils/base-element.js'
 import { useMachine } from '../utils/use-machine.js'
+import dropdownStyles from './dropdown.css?inline'
 
 interface MenuOption {
   label: string
@@ -16,9 +17,10 @@ interface MenuApi {
 }
 
 @customElement('lzt-dropdown')
-export class LztDropdown extends TailwindElement {
+export class LztDropdown extends BaseElement {
   static styles = [
-    ...TailwindElement.styles,
+    ...BaseElement.styles,
+    css`${unsafeCSS(dropdownStyles)}`,
     css`
       :host {
         display: inline-block;
@@ -135,22 +137,22 @@ export class LztDropdown extends TailwindElement {
     const isOpen = this.service.context.get('open') || false
 
     return html`
-      <div class="relative inline-block">
+      <div class="dropdown-container">
         <button
-          class="px-4 py-2 bg-white border border-gray-300 rounded-md flex items-center justify-between gap-2 cursor-pointer hover:border-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[200px] ${isOpen ? 'border-blue-500' : ''}"
+          class="dropdown-trigger ${isOpen ? 'open' : ''}"
           @click="${this.toggleDropdown}"
           aria-haspopup="${triggerProps['aria-haspopup']}"
           aria-expanded="${triggerProps['aria-expanded']}"
           role="${triggerProps.role}"
           tabindex="${triggerProps.tabindex}"
         >
-          <span class="text-gray-900">${displayLabel}</span>
-          <div class="transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}" style="width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor;"></div>
+          <span class="dropdown-trigger-label">${displayLabel}</span>
+          <div class="dropdown-arrow ${isOpen ? 'open' : ''}"></div>
         </button>
 
         ${!contentProps.hidden ? html`
           <div
-            class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-10"
+            class="dropdown-content"
             role="${contentProps.role}"
           >
             ${this.options.length > 0 ? this.options.map(option => {
@@ -158,7 +160,7 @@ export class LztDropdown extends TailwindElement {
               const isSelected = this.value === option.value
               return html`
                 <div
-                  class="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors text-gray-900 ${isSelected ? 'bg-blue-50 text-blue-600' : ''}"
+                  class="dropdown-item ${isSelected ? 'selected' : ''}"
                   role="${itemProps.role}"
                   data-value="${itemProps['data-value']}"
                   @click="${() => this.handleItemClick(option)}"
@@ -177,9 +179,10 @@ export class LztDropdown extends TailwindElement {
 }
 
 @customElement('lzt-dropdown-item')
-export class LztDropdownItem extends TailwindElement {
+export class LztDropdownItem extends BaseElement {
   static styles = [
-    ...TailwindElement.styles,
+    ...BaseElement.styles,
+    css`${unsafeCSS(dropdownStyles)}`,
     css`
       :host {
         display: block;
@@ -195,7 +198,7 @@ export class LztDropdownItem extends TailwindElement {
 
   render() {
     return html`
-      <div class="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors text-gray-900 ${this.selected ? 'bg-blue-50 text-blue-600' : ''}" role="option">
+      <div class="dropdown-item ${this.selected ? 'selected' : ''}" role="option">
         <slot></slot>
       </div>
     `

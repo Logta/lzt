@@ -1,0 +1,47 @@
+# mise configuration for lzt-ui project
+# https://mise.jdx.dev/
+
+[tools]
+# Node.js version
+node = "24.3.0"
+
+# pnpm package manager
+pnpm = "10.12.3"
+
+# Go for demo-go
+go = "latest"
+
+[tasks.install]
+description = "Install all dependencies"
+run = "pnpm install"
+
+[tasks.dev]
+description = "Start development server for lit-components"
+run = "pnpm dev"
+
+[tasks."dev:react"]
+description = "Start development server for react-demo"
+run = "pnpm dev:react"
+
+[tasks.build]
+description = "Build lit-components"
+run = "pnpm build"
+
+[tasks.storybook]
+description = "Start Storybook"
+run = "pnpm storybook"
+
+[tasks."dev:go"]
+description = "Start Go demo server (http://localhost:8080)"
+dir = "demo-go"
+run = "go run main.go"
+
+[tasks."setup:go"]
+description = "Setup Go demo (install deps, build, and copy bundle)"
+run = [
+  "pnpm install",
+  "pnpm build",
+  "mkdir -p demo-go/static",
+  "cp packages/lit-components/dist/bundle/lzt-components.iife.js demo-go/static/ || echo 'Warning: Bundle file not found. Run build first.'"
+]
+

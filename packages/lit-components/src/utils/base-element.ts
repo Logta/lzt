@@ -1,10 +1,12 @@
-import { LitElement } from 'lit'
-import { tailwindStyles } from '../styles/tailwind.js'
+import { LitElement, css, unsafeCSS } from 'lit'
+import baseStyles from '../styles/base.css?inline'
 
 /**
- * Base element that includes Tailwind styles
- * All components should extend this class to get Tailwind CSS utilities
+ * Base element for all LZT components
+ * Provides common functionality and can be extended to add shared styles
  */
-export class TailwindElement extends LitElement {
-  static styles = [tailwindStyles]
+export class BaseElement extends LitElement {
+  static styles = [
+    css`${unsafeCSS(baseStyles)}`
+  ]
 }

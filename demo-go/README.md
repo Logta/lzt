@@ -65,7 +65,7 @@ demo-go/
 - **Frontend**: LZT UI Web Components
   - Lit (Web Components)
   - Zag.js (State Machine)
-  - Tailwind CSS v4 (Styling)
+  - CSS Custom Properties (Styling)
 - **Bundle Format**: IIFE (Immediately Invoked Function Expression)
 
 ## デモの内容

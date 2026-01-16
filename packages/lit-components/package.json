@@ -35,8 +35,7 @@
       "import": "./dist/react/dropdown.js"
     },
     "./bundle": "./dist/bundle/lzt-components.iife.js",
-    "./bundle/es": "./dist/bundle/lzt-components.js",
-    "./styles.css": "./dist/styles/index.css"
+    "./bundle/es": "./dist/bundle/lzt-components.js"
   },
   "files": [
     "dist",
@@ -44,11 +43,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "pnpm build:wc && pnpm build:react && pnpm build:bundle && pnpm build:styles",
+    "build": "pnpm build:wc && pnpm build:react && pnpm build:bundle",
     "build:wc": "tsc && vite build --config vite.config.wc.ts",
     "build:react": "tsc && vite build --config vite.config.react.ts",
     "build:bundle": "vite build --config vite.config.bundle.ts",
-    "build:styles": "vite build --config vite.config.styles.ts",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -66,13 +64,11 @@
     "@storybook/addon-themes": "^10.1.11",
     "@storybook/web-components": "^10.1.11",
     "@storybook/web-components-vite": "^10.1.11",
-    "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "storybook": "^10.1.11",
-    "tailwindcss": "^4.1.18",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "^4.5.4"

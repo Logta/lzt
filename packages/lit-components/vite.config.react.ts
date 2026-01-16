@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
-import tailwindcss from '@tailwindcss/postcss'
 
 /**
  * React向けビルド設定
@@ -31,11 +30,6 @@ export default defineConfig({
         preserveModules: false,
         entryFileNames: '[name].js'
       }
-    }
-  },
-  css: {
-    postcss: {
-      plugins: [tailwindcss()]
     }
   }
 })
