@@ -29,11 +29,36 @@ services:
       - /app/node_modules
       - /app/packages/lit-components/node_modules
       - /app/packages/react-demo/node_modules
-    command: pnpm dev:react
+    command: pnpm dev:react -- --host 0.0.0.0
     environment:
       - NODE_ENV=development
     stdin_open: true
     tty: true
+    depends_on:
+      builder:
+        condition: service_completed_successfully
+
+  # Storybook
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lzt-storybook
+    ports:
+      - "6006:6006"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/lit-components/node_modules
+      - /app/packages/react-demo/node_modules
+    command: pnpm storybook --host 0.0.0.0
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    depends_on:
+      builder:
+        condition: service_completed_successfully
 
   # Goデモアプリケーション
   demo-go:
