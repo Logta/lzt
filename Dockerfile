@@ -1,9 +1,9 @@
 # Node.js開発環境用Dockerfile
 # mise.tomlで指定されたバージョンに合わせる
-FROM node:24.3.0-slim
+FROM node:26.13.0-slim
 
 # pnpmのインストール（mise.tomlで指定されたバージョン）
-RUN npm install -g pnpm@10.12.3
+RUN npm install -g pnpm@12.16.1
 
 # 作業ディレクトリの設定
 WORKDIR /app
