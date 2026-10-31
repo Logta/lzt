@@ -3,10 +3,10 @@
 
 [tools]
 # Node.js version
-node = "24.3.0"
+node = "26.13.0"
 
 # pnpm package manager
-pnpm = "10.12.3"
+pnpm = "12.16.1"
 
 # Go for demo-go
 go = "latest"
