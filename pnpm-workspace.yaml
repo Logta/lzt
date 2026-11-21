@@ -7,3 +7,7 @@ catalog:
   typescript: 5.9.3
   vite: 7.3.0
   vitest: 4.0.16
+
+# 脆弱性対応 (tinypool: GHSA-5gmw-xhrv-c9v3/GHSA-85c8-ppgw-ccpr, seroval: 複数, vite 7.x: GHSA-587h-7wmj-h5pm ほか)
+overrides:
+  'vite@>=7.0.0 <7.3.7': 7.3.7
